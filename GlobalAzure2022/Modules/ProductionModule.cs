@@ -4,16 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAzure2022.Modules;
 
-public static class ProductionModule
+public class ProductionModule : IModule
 {
-    public static IServiceCollection RegisterProduction(this IServiceCollection services)
-    {
-        services.AddScoped<IProductionService, ProductionService>();
+    public bool IsEnabled { get; } = true;
+    public int Order { get; } = 0;
 
-        return services;
+    public IServiceCollection RegisterModule(WebApplicationBuilder builder)
+    {
+        builder.Services.AddScoped<IProductionService, ProductionService>();
+
+        return builder.Services;
     }
 
-    public static IEndpointRouteBuilder MapProduction(this IEndpointRouteBuilder endpoints)
+    public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
         endpoints.MapGet("/production/", async ([FromServices] IProductionService productionService) => await productionService.SayHelloAsync())
             .WithName("SayHelloFromProduction")

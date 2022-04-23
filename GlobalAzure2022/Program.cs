@@ -7,15 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.RegisterProduction();
-builder.Services.RegisterPubs();
-builder.Services.RegisterSuppliers();
+builder.RegisterModules();
 
 var app = builder.Build();
 
-app.MapProduction();
-app.MapPubs();
-app.MapSuppliers();
+app.MapEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -4,16 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAzure2022.Modules;
 
-public static class SuppliersModule
+public class SuppliersModule : IModule
 {
-    public static IServiceCollection RegisterSuppliers(this IServiceCollection services)
+    public bool IsEnabled { get; } = true;
+    public int Order { get; } = 0;
+    public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        services.AddScoped<ISupplierService, SupplierService>();
+        builder.Services.AddScoped<ISupplierService, SupplierService>();
 
-        return services;
+        return builder.Services;
     }
 
-    public static IEndpointRouteBuilder MapSuppliers(this IEndpointRouteBuilder endpoints)
+    public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
         endpoints.MapGet("/suppliers/", async ([FromServices] ISupplierService supplierService) => await supplierService.SayHelloAsync())
             .WithName("SayHelloFromSuppliers")

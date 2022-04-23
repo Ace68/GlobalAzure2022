@@ -4,16 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAzure2022.Modules;
 
-public static class PubsModule
+public class PubsModule : IModule
 {
-    public static IServiceCollection RegisterPubs(this IServiceCollection services)
+    public bool IsEnabled { get; } = true;
+    public int Order { get; } = 0;
+    public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        services.AddScoped<IPubsService, PubsService>();
+        builder.Services.AddScoped<IPubsService, PubsService>();
 
-        return services;
+        return builder.Services;
     }
 
-    public static IEndpointRouteBuilder MapPubs(this IEndpointRouteBuilder endpoints)
+    public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
         endpoints.MapGet("/pubs/", async ([FromServices] IPubsService pubsService) => await pubsService.SayHelloAsync())
             .WithName("SayHelloFromPubs")
