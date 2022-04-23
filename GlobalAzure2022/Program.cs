@@ -1,5 +1,6 @@
 using GlobalAzure2022.Abstracts;
 using GlobalAzure2022.Concretes;
+using GlobalAzure2022.Modules;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,23 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IProductionService, ProductionService>();
-builder.Services.AddScoped<IPubsService, PubsService>();
-builder.Services.AddScoped<ISupplierService, SupplierService>();
+builder.Services.RegisterProduction();
+builder.Services.RegisterPubs();
+builder.Services.RegisterSuppliers();
 
 var app = builder.Build();
 
-app.MapGet("/production/", async ([FromServices] IProductionService productionService) => await productionService.SayHelloAsync())
-    .WithName("SayHelloFromProduction")
-    .WithTags("Production");
-
-app.MapGet("/pubs/", async ([FromServices] IPubsService pubsService) => await pubsService.SayHelloAsync())
-    .WithName("SayHelloFromPubs")
-    .WithTags("Pubs");
-
-app.MapGet("/suppliers/", async ([FromServices] ISupplierService supplierService) => await supplierService.SayHelloAsync())
-    .WithName("SayHelloFromSuppliers")
-    .WithTags("Suppliers");
+app.MapProduction();
+app.MapPubs();
+app.MapSuppliers();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
