@@ -52,3 +52,12 @@ c:\Sviluppo\GlobalAzure2022\GlobalAzure2022\obj\Debug\net6.0\scopedcss\bundle\Gl
 c:\Sviluppo\GlobalAzure2022\GlobalAzure2022\obj\Debug\net6.0\GlobalAzure2022.csproj.CopyComplete
 c:\Sviluppo\GlobalAzure2022\GlobalAzure2022\obj\Debug\net6.0\GlobalAzure2022.genruntimeconfig.cache
 c:\Sviluppo\GlobalAzure2022\GlobalAzure2022\obj\Debug\net6.0\ref\GlobalAzure2022.dll
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\Serilog.dll
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\Serilog.Sinks.File.dll
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\GlobalAzure2022.Modules.Production.dll
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\GlobalAzure2022.Modules.Production.pdb
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\GlobalAzure2022.Modules.Pubs.dll
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\GlobalAzure2022.Modules.Suppliers.dll
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\GlobalAzure2022.Modules.Pubs.pdb
+C:\Sviluppo\GlobalAzure2022\GlobalAzure2022\bin\Debug\net6.0\GlobalAzure2022.Modules.Suppliers.pdb

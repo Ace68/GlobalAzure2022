@@ -14,13 +14,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Modules\" />
-    <Folder Include="Abstracts\" />
-    <Folder Include="Concretes\" />
   </ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="GlobalAzure2022.Tests" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\GlobalAzure2022.Modules.Production\GlobalAzure2022.Modules.Production.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Modules.Pubs\GlobalAzure2022.Modules.Pubs.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Modules.Suppliers\GlobalAzure2022.Modules.Suppliers.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
-﻿using GlobalAzure2022.Abstracts;
-using GlobalAzure2022.Concretes;
+﻿using GlobalAzure2022.Modules.Pubs;
+using GlobalAzure2022.Modules.Pubs.Abstracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAzure2022.Modules;
@@ -10,7 +10,7 @@ public class PubsModule : IModule
     public int Order { get; } = 0;
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<IPubsService, PubsService>();
+        builder.Services.AddPubs();
 
         return builder.Services;
     }

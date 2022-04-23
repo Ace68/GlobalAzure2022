@@ -1,6 +1,6 @@
-﻿using GlobalAzure2022.Abstracts;
+﻿using GlobalAzure2022.Modules.Pubs.Abstracts;
 
-namespace GlobalAzure2022.Concretes;
+namespace GlobalAzure2022.Modules.Pubs.Concretes;
 
 public class PubsService : IPubsService
 {

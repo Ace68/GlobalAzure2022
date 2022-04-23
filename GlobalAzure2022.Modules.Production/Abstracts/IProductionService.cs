@@ -1,4 +1,4 @@
-﻿namespace GlobalAzure2022.Abstracts;
+﻿namespace GlobalAzure2022.Modules.Production.Abstracts;
 
 public interface IProductionService
 {

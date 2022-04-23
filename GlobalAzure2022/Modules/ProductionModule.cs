@@ -1,5 +1,5 @@
-﻿using GlobalAzure2022.Abstracts;
-using GlobalAzure2022.Concretes;
+﻿using GlobalAzure2022.Modules.Production;
+using GlobalAzure2022.Modules.Production.Abstracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAzure2022.Modules;
@@ -11,7 +11,7 @@ public class ProductionModule : IModule
 
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<IProductionService, ProductionService>();
+        builder.Services.AddProduction();
 
         return builder.Services;
     }

@@ -1,4 +1,4 @@
-﻿namespace GlobalAzure2022.Abstracts;
+﻿namespace GlobalAzure2022.Modules.Pubs.Abstracts;
 
 public interface IPubsService
 {

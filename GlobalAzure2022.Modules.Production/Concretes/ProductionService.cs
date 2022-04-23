@@ -1,4 +1,4 @@
-﻿using GlobalAzure2022.Abstracts;
+﻿using GlobalAzure2022.Modules.Production.Abstracts;
 
 namespace GlobalAzure2022.Concretes;
 

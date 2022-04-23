@@ -1,6 +1,6 @@
-﻿using GlobalAzure2022.Abstracts;
+﻿using GlobalAzure2022.Modules.Suppliers.Abstracts;
 
-namespace GlobalAzure2022.Concretes;
+namespace GlobalAzure2022.Modules.Suppliers.Concretes;
 
 public class SupplierService : ISupplierService
 {
