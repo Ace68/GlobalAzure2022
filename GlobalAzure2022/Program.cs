@@ -1,7 +1,4 @@
-using GlobalAzure2022.Abstracts;
-using GlobalAzure2022.Concretes;
 using GlobalAzure2022.Modules;
-using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
