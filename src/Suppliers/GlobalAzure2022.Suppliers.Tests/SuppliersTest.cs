@@ -6,7 +6,7 @@ namespace GlobalAzure2022.Suppliers.Tests;
 public class SuppliersTest : BaseTest
 {
     [Fact]
-    private async Task Can_Get_Greetings_FromPubs()
+    private async Task Can_Get_Greetings_FromSuppliers()
     {
         var response = await Client.GetAsync("/suppliers/");
 
