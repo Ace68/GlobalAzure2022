@@ -14,6 +14,6 @@ public class ProductionTest : BaseTest
 
         var body = await response.Content.ReadAsStringAsync();
 
-        Assert.Equal("Hello from Production", body);
+        Assert.Equal("\"Hello from Production\"", body);
     }
 }

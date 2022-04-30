@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.4" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.4" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="MudBlazor" Version="6.0.9" />
+		<PackageReference Include="Serilog" Version="2.11.0" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\GlobalAzure2022.Wasm.Modules.Desktop\GlobalAzure2022.Wasm.Modules.Desktop.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Wasm.Modules.Production.Extensions\GlobalAzure2022.Wasm.Modules.Production.Extensions.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Wasm.Modules.Production\GlobalAzure2022.Wasm.Modules.Production.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Wasm.Modules.Pubs.Extensions\GlobalAzure2022.Wasm.Modules.Pubs.Extensions.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Wasm.Modules.Pubs\GlobalAzure2022.Wasm.Modules.Pubs.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Wasm.Modules.Suppliers.Extensions\GlobalAzure2022.Wasm.Modules.Suppliers.Extensions.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Wasm.Modules.Suppliers\GlobalAzure2022.Wasm.Modules.Suppliers.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Wasm.Shared\GlobalAzure2022.Wasm.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<BlazorWebAssemblyLazyLoad Include="GlobalAzure2022.Wasm.Modules.Desktop.dll" />
+		<BlazorWebAssemblyLazyLoad Include="GlobalAzure2022.Wasm.Modules.Production.dll" />
+		<BlazorWebAssemblyLazyLoad Include="GlobalAzure2022.Wasm.Modules.Pubs.dll" />
+		<BlazorWebAssemblyLazyLoad Include="GlobalAzure2022.Wasm.Modules.Suppliers.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Features\" />
+	</ItemGroup>
+	
+	
+</Project>

@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Abstracts\Accounts\**" />
+    <Compile Remove="Abstracts\Companies\**" />
+    <Compile Remove="JsonModel\Companies\**" />
+    <EmbeddedResource Remove="Abstracts\Accounts\**" />
+    <EmbeddedResource Remove="Abstracts\Companies\**" />
+    <EmbeddedResource Remove="JsonModel\Companies\**" />
+    <None Remove="Abstracts\Accounts\**" />
+    <None Remove="Abstracts\Companies\**" />
+    <None Remove="JsonModel\Companies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="CustomTypes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.JSInterop" Version="6.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
+  </ItemGroup>
+
+</Project>

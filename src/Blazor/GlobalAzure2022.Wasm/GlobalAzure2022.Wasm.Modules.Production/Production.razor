@@ -1,0 +1,10 @@
+﻿@inherits ProductionBase
+@page "/production"
+@using MudBlazor
+
+<PageTitle>Production</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">Production</MudText>
+<MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Mic" Color="Color.Primary" OnClick="SayHello">Greetings from Production</MudButton>
+<hr/>
+<MudAlert Severity="Severity.Success">@Greetings</MudAlert>
