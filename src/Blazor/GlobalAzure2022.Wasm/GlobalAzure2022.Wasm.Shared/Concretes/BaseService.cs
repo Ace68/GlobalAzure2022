@@ -11,8 +11,8 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
         protected BaseService(ILoggerFactory loggerFactory,
             AppConfiguration appConfiguration)
         {
-            this.AppConfiguration = appConfiguration;
-            this.Logger = loggerFactory.CreateLogger(this.GetType());
+            AppConfiguration = appConfiguration;
+            Logger = loggerFactory.CreateLogger(GetType());
         }
     }
 }

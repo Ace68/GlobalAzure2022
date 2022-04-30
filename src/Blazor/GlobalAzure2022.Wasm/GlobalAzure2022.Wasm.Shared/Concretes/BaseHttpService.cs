@@ -17,10 +17,10 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
             AppConfiguration appConfiguration,
             ILoggerFactory loggerFactory)
         {
-            this.HttpClient = httpClient;
-            this.HttpService = httpService;
-            this.AppConfiguration = appConfiguration;
-            this.Logger = loggerFactory.CreateLogger(this.GetType());
+            HttpClient = httpClient;
+            HttpService = httpService;
+            AppConfiguration = appConfiguration;
+            Logger = loggerFactory.CreateLogger(GetType());
         }
     }
 }

@@ -75,13 +75,13 @@ public class AppBase : ComponentBase, IDisposable
     }
     public void Dispose()
     {
-        this.Dispose(true);
+        Dispose(true);
         GC.SuppressFinalize(this);
     }
 
     ~AppBase()
     {
-        this.Dispose(false);
+        Dispose(false);
     }
     #endregion
 }

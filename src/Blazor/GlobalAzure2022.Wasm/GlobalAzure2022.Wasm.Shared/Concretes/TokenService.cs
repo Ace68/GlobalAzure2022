@@ -20,14 +20,14 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
             HttpClient httpClient,
             NavigationManager navigationManager)
         {
-            this._localStorageService = localStorageService;
-            this._httpClient = httpClient;
-            this._navigationManager = navigationManager;
+            _localStorageService = localStorageService;
+            _httpClient = httpClient;
+            _navigationManager = navigationManager;
         }
 
         public async Task StoreTokenAsync(string accessToken)
         {
-            await this._localStorageService.SetItem("token", accessToken);
+            await _localStorageService.SetItem("token", accessToken);
         }
 
         public async Task<TokenJson> DecodeAndStoreTokenAsync(string accessToken)
@@ -56,7 +56,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                     token.Company = claim.Value;
             }
 
-            await this._localStorageService.SetItem("token", token.AccessToken);
+            await _localStorageService.SetItem("token", token.AccessToken);
 
             return token;
         }
@@ -94,35 +94,35 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
 
         public async Task RefreshToken()
         {
-            var accessToken = await this._localStorageService.GetItem<string>("token");
+            var accessToken = await _localStorageService.GetItem<string>("token");
             if (string.IsNullOrWhiteSpace(accessToken))
             {
-                this._navigationManager.NavigateTo("/");
+                _navigationManager.NavigateTo("/");
                 return;
             }
 
             var request = new HttpRequestMessage(HttpMethod.Post, "/v1/Tokens/getnewtoken");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             
-            var response = await this._httpClient.SendAsync(request);
+            var response = await _httpClient.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
             var tokenJson = JsonConvert.DeserializeObject<TokenJson>(content);
             if (tokenJson is null)
             {
-                this._navigationManager.NavigateTo("/");
+                _navigationManager.NavigateTo("/");
                 return;
             }
 
-            await this.DecodeAndStoreTokenAsync(tokenJson.AccessToken);
+            await DecodeAndStoreTokenAsync(tokenJson.AccessToken);
         }
 
         public async Task<bool> IsValidAsync()
         {
-            var accessToken = await this._localStorageService.GetItem<string>("token");
+            var accessToken = await _localStorageService.GetItem<string>("token");
             if (string.IsNullOrWhiteSpace(accessToken))
                 return false;
 
-            var token = this.DecodeToken(accessToken);
+            var token = DecodeToken(accessToken);
             return token.ValidTo >= DateTime.UtcNow;
         }
     }

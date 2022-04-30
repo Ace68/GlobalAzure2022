@@ -1,4 +1,3 @@
-using GlobalAzure2022.Modules;
 using GlobalAzure2022.Production.Modules;
 
 var builder = WebApplication.CreateBuilder(args);

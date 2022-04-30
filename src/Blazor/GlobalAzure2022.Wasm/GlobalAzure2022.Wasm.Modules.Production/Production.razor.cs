@@ -33,13 +33,13 @@ public class ProductionBase : ComponentBase, IDisposable
     }
     public void Dispose()
     {
-        this.Dispose(true);
+        Dispose(true);
         GC.SuppressFinalize(this);
     }
 
     ~ProductionBase()
     {
-        this.Dispose(false);
+        Dispose(false);
     }
     #endregion
 }

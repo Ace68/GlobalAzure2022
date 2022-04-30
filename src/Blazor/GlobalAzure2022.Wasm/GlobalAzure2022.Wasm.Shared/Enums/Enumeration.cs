@@ -15,12 +15,12 @@ public abstract class Enumeration : IComparable
 
     protected Enumeration(int id, string code, string name)
     {
-        this.Id = id;
-        this.Code = code;
-        this.Name = name;
+        Id = id;
+        Code = code;
+        Name = name;
     }
 
-    public override string ToString() => this.Name;
+    public override string ToString() => Name;
 
     public static IEnumerable<T> GetAll<T>() where T : Enumeration
     {
@@ -36,13 +36,13 @@ public abstract class Enumeration : IComparable
         if (otherValue == null)
             return false;
 
-        var typeMatches = this.GetType() == obj.GetType();
-        var valueMatches = this.Id.Equals(otherValue.Id);
+        var typeMatches = GetType() == obj.GetType();
+        var valueMatches = Id.Equals(otherValue.Id);
 
         return typeMatches && valueMatches;
     }
 
-    public override int GetHashCode() => this.Id.GetHashCode();
+    public override int GetHashCode() => Id.GetHashCode();
 
     public static int AbsoluteDifference(Enumeration firstValue, Enumeration secondValue)
     {
@@ -78,5 +78,5 @@ public abstract class Enumeration : IComparable
         return matchingItem;
     }
 
-    public int CompareTo(object other) => this.Id.CompareTo(((Enumeration)other).Id);
+    public int CompareTo(object other) => Id.CompareTo(((Enumeration)other).Id);
 }

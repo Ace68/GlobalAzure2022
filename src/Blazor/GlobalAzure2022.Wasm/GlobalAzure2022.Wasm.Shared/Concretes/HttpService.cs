@@ -25,26 +25,26 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
             ILocalStorageService localStorageService,
             ITokenService tokenService)
         {
-            this._httpClient = httpClient;
-            this._navigationManager = navigationManager;
-            this._localStorageService = localStorageService;
-            this._tokenService = tokenService;
+            _httpClient = httpClient;
+            _navigationManager = navigationManager;
+            _localStorageService = localStorageService;
+            _tokenService = tokenService;
         }
 
         public async Task<byte[]> DownloadAsync(string uri)
         {
             // Add Bearer Token
-            var token = await this._localStorageService.GetItem<string>("token");
-            this._httpClient.DefaultRequestHeaders.Authorization =
+            var token = await _localStorageService.GetItem<string>("token");
+            _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
 
-            var response = await this._httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(uri);
             var content = await response.Content.ReadAsStringAsync();
 
             // auto logout on 401 response
             if (response.StatusCode.Equals(HttpStatusCode.Unauthorized))
             {
-                this._navigationManager.NavigateTo("logout");
+                _navigationManager.NavigateTo("logout");
                 return default;
             }
 
@@ -66,21 +66,23 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 //// Bearer Token
                 //var token = await this._localStorageService.GetItem<string>("token");
 
-                using var request =
+                var request =
                     new HttpRequestMessage(HttpMethod.Get, uri);
+
                 //request.Headers.Authorization =
                 //    new AuthenticationHeaderValue("Bearer", token);
 
-                var response = await this._httpClient.SendAsync(request);
+                var response = await _httpClient.SendAsync(request);
 
-                //var response = await this._httpClient.GetAsync(uri);
+                //var response = await _httpClient.GetAsync(uri);
                 var content = await response.Content.ReadAsStringAsync();
+                //response.Content.ReadFromJsonAsync<T>();
 
                 switch (response.StatusCode)
                 {
                     // auto logout on 401 response
                     case HttpStatusCode.Unauthorized:
-                        this._navigationManager.NavigateTo("logout");
+                        _navigationManager.NavigateTo("logout");
                         return default;
 
                     case HttpStatusCode.InternalServerError:
@@ -90,7 +92,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                         // In this case the Token is not yet valid
                         // so I add a sleep, end re-try
                         Thread.Sleep(1000);
-                        await this.Get<T>(uri);
+                        await Get<T>(uri);
                         return default;
                 }
 
@@ -112,15 +114,15 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
         {
             try
             {
-                if (!await this._tokenService.IsValidAsync())
-                    await this._tokenService.RefreshToken();
+                if (!await _tokenService.IsValidAsync())
+                    await _tokenService.RefreshToken();
 
                 // Add Bearer Token
-                var token = await this._localStorageService.GetItem<string>("token");
-                this._httpClient.DefaultRequestHeaders.Authorization =
+                var token = await _localStorageService.GetItem<string>("token");
+                _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", token);
 
-                return await this._httpClient.GetStringAsync(uri);
+                return await _httpClient.GetStringAsync(uri);
             }
             catch (Exception ex)
             {
@@ -136,7 +138,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 Content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json")
             };
 
-            return await this.SendRequest<T>(request);
+            return await SendRequest<T>(request);
         }
 
         public async Task Post(string uri, object value)
@@ -146,17 +148,17 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 Content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json")
             };
 
-            await this.SendRequest(request);
+            await SendRequest(request);
         }
 
         public async Task PostAsFormData(string uri, MultipartFormDataContent form)
         {
             // Add Bearer Token
-            var token = await this._localStorageService.GetItem<string>("token");
-            this._httpClient.DefaultRequestHeaders.Authorization =
+            var token = await _localStorageService.GetItem<string>("token");
+            _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", token);
 
-            await this._httpClient.PostAsync(uri, form);
+            await _httpClient.PostAsync(uri, form);
         }
 
         public async Task<T> Put<T>(string uri, object value)
@@ -166,7 +168,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 Content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json")
             };
 
-            return await this.SendRequest<T>(request);
+            return await SendRequest<T>(request);
         }
 
         public async Task Put(string uri, object value)
@@ -176,7 +178,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 Content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json")
             };
 
-            await this.SendRequest(request);
+            await SendRequest(request);
         }
 
         public async Task<T> Patch<T>(string uri, object value)
@@ -186,7 +188,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 Content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json")
             };
 
-            return await this.SendRequest<T>(request);
+            return await SendRequest<T>(request);
         }
 
         public async Task Patch(string uri, object value)
@@ -196,7 +198,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 Content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json")
             };
 
-            await this.SendRequest(request);
+            await SendRequest(request);
         }
 
         public async Task Delete(string uri, object value)
@@ -206,14 +208,14 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 Content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json")
             };
 
-            await this.SendRequest(request);
+            await SendRequest(request);
         }
 
         #region Helpers
         private async Task<T> SendRequest<T>(HttpRequestMessage request)
         {
             // Add Bearer Token
-            var accessToken = await this._localStorageService.GetItem<string>("token");
+            var accessToken = await _localStorageService.GetItem<string>("token");
             //var token = this._tokenService.DecodeToken(accessToken);
             //if (token.ValidTo < DateTime.UtcNow)
             //{
@@ -223,15 +225,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            // PortalSettings
-            var portalSettings = await this._localStorageService.GetItem<string>("portalSettings");
-            request.Headers.Add("PortalSettings", portalSettings);
-
-            // IoTSettings
-            var iotSettings = await this._localStorageService.GetItem<string>("iotAccountSettings");
-            request.Headers.Add("IoTAccountSettings", iotSettings);
-
-            using var response = await this._httpClient.SendAsync(request);
+            using var response = await _httpClient.SendAsync(request);
 
             if (response.StatusCode.Equals(HttpStatusCode.MethodNotAllowed))
                 throw new Exception("Operation Not Allowed");
@@ -239,7 +233,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
             // auto logout on 401 response
             if (response.StatusCode.Equals(HttpStatusCode.Unauthorized))
             {
-                this._navigationManager.NavigateTo("logout");
+                _navigationManager.NavigateTo("logout");
                 return default;
             }
 
@@ -255,7 +249,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
         private async Task SendRequest(HttpRequestMessage request)
         {
             // Add Bearer Token
-            var accessToken = await this._localStorageService.GetItem<string>("token");
+            var accessToken = await _localStorageService.GetItem<string>("token");
             //var token = this._tokenService.DecodeToken(accessToken);
             //if (token.ValidTo < DateTime.UtcNow)
             //{
@@ -264,15 +258,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
             //}
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            // PortalSettings
-            var portalSettings = await this._localStorageService.GetItem<string>("portalSettings");
-            request.Headers.Add("PortalSettings", portalSettings);
-
-            // IoTSettings
-            var iotSettings = await this._localStorageService.GetItem<string>("iotAccountSettings");
-            request.Headers.Add("IoTAccountSettings", iotSettings);
-
-            using var response = await this._httpClient.SendAsync(request);
+            using var response = await _httpClient.SendAsync(request);
 
             if (response.StatusCode.Equals(HttpStatusCode.MethodNotAllowed))
             {
@@ -283,7 +269,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
             // auto logout on 401 response
             if (response.StatusCode.Equals(HttpStatusCode.Unauthorized))
             {
-                this._navigationManager.NavigateTo("logout");
+                _navigationManager.NavigateTo("logout");
             }
 
             // throw exception on error response

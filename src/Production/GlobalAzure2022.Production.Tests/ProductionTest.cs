@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text.Json;
+using System.Threading.Tasks;
+using GlobalAzure2022.Modules.Production.Extensions.JsonResponses;
 using Xunit;
 
 namespace GlobalAzure2022.Production.Tests;
@@ -13,7 +15,8 @@ public class ProductionTest : BaseTest
         Assert.True(response.IsSuccessStatusCode);
 
         var body = await response.Content.ReadAsStringAsync();
+        var message = JsonSerializer.Deserialize<ProductionGreetings>(body);
 
-        Assert.Equal("\"Hello from Production\"", body);
+        Assert.Equal("Hello from Production", message.Message);
     }
 }

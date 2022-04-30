@@ -1,6 +1,5 @@
 ﻿using GlobalAzure2022.Modules.Production;
 using GlobalAzure2022.Modules.Production.Abstracts;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAzure2022.Production.Modules;
 

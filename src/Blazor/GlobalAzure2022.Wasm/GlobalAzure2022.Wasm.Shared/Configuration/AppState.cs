@@ -8,9 +8,9 @@ namespace GlobalAzure2022.Wasm.Shared.Configuration
 
         public void NotifiyStateChanged()
         {
-            this.NotifyStateChanged();
+            NotifyStateChanged();
         }
 
-        private void NotifyStateChanged() => this.OnChange?.Invoke();
+        private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }

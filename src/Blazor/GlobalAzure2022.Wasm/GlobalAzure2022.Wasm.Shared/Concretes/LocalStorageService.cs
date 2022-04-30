@@ -11,12 +11,12 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
 
         public LocalStorageService(IJSRuntime jsRuntime)
         {
-            this._jsRuntime = jsRuntime;
+            _jsRuntime = jsRuntime;
         }
 
         public async Task<T> GetItem<T>(string key)
         {
-            var json = await this._jsRuntime.InvokeAsync<string>("localStorage.getItem", key);
+            var json = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", key);
 
             return json == null
                 ? default
@@ -25,12 +25,12 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
 
         public async Task SetItem<T>(string key, T value)
         {
-            await this._jsRuntime.InvokeVoidAsync("localStorage.setItem", key, JsonConvert.SerializeObject(value));
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", key, JsonConvert.SerializeObject(value));
         }
 
         public async Task RemoveItem(string key)
         {
-            await this._jsRuntime.InvokeVoidAsync("localStorage.removeItem", key);
+            await _jsRuntime.InvokeVoidAsync("localStorage.removeItem", key);
         }
     }
 }

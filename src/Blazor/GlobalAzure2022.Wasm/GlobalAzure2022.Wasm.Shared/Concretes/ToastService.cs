@@ -12,43 +12,43 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
 
         public void ShowToast(string message, ToastLevel level)
         {
-            this.OnShow?.Invoke(message, level);
-            this.StartCountdown();
+            OnShow?.Invoke(message, level);
+            StartCountdown();
         }
 
         private void StartCountdown()
         {
-            this.SetCountdown();
+            SetCountdown();
 
-            if (this._countdown.Enabled)
+            if (_countdown.Enabled)
             {
-                this._countdown.Stop();
-                this._countdown.Start();
+                _countdown.Stop();
+                _countdown.Start();
             }
             else
             {
-                this._countdown.Start();
+                _countdown.Start();
             }
         }
 
         private void SetCountdown()
         {
-            if (this._countdown is null)
+            if (_countdown is null)
             {
-                this._countdown = new Timer(5000);
-                this._countdown.Elapsed += this.HideToast;
-                this._countdown.AutoReset = false;
+                _countdown = new Timer(5000);
+                _countdown.Elapsed += HideToast;
+                _countdown.AutoReset = false;
             }
         }
 
         private void HideToast(object source, ElapsedEventArgs args)
         {
-            this.OnHide?.Invoke();
+            OnHide?.Invoke();
         }
 
         public void Dispose()
         {
-            this._countdown?.Dispose();
+            _countdown?.Dispose();
         }
     }
 }

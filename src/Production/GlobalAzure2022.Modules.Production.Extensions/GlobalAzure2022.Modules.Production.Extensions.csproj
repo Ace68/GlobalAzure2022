@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CustomTypes\" />
+    <Compile Remove="CustomTypes\**" />
+    <EmbeddedResource Remove="CustomTypes\**" />
+    <None Remove="CustomTypes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="JsonResponses\" />
   </ItemGroup>
 
 </Project>

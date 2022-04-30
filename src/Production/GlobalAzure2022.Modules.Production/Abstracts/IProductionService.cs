@@ -1,6 +1,8 @@
-﻿namespace GlobalAzure2022.Modules.Production.Abstracts;
+﻿using GlobalAzure2022.Modules.Production.Extensions.JsonResponses;
+
+namespace GlobalAzure2022.Modules.Production.Abstracts;
 
 public interface IProductionService
 {
-    Task<string> SayHelloAsync();
+    Task<ProductionGreetings> SayHelloAsync();
 }
