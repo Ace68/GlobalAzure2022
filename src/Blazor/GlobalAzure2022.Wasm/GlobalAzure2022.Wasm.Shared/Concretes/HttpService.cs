@@ -66,7 +66,7 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
                 //// Bearer Token
                 //var token = await this._localStorageService.GetItem<string>("token");
 
-                var request =
+                using var request =
                     new HttpRequestMessage(HttpMethod.Get, uri);
 
                 //request.Headers.Authorization =
@@ -215,15 +215,8 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
         private async Task<T> SendRequest<T>(HttpRequestMessage request)
         {
             // Add Bearer Token
-            var accessToken = await _localStorageService.GetItem<string>("token");
-            //var token = this._tokenService.DecodeToken(accessToken);
-            //if (token.ValidTo < DateTime.UtcNow)
-            //{
-            //    await this._tokenService.RefreshToken();
-            //    accessToken = await this._localStorageService.GetItem<string>("token");
-            //}
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            //var accessToken = await _localStorageService.GetItem<string>("token");
+            //request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             using var response = await _httpClient.SendAsync(request);
 
@@ -249,14 +242,8 @@ namespace GlobalAzure2022.Wasm.Shared.Concretes
         private async Task SendRequest(HttpRequestMessage request)
         {
             // Add Bearer Token
-            var accessToken = await _localStorageService.GetItem<string>("token");
-            //var token = this._tokenService.DecodeToken(accessToken);
-            //if (token.ValidTo < DateTime.UtcNow)
-            //{
-            //    await this._tokenService.RefreshToken();
-            //    accessToken = await this._localStorageService.GetItem<string>("token");
-            //}
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            //var accessToken = await _localStorageService.GetItem<string>("token");
+            //request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             using var response = await _httpClient.SendAsync(request);
 

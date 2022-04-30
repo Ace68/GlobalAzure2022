@@ -13,7 +13,8 @@ public class ProductionBase : ComponentBase, IDisposable
     {
         try
         {
-            Greetings = await ProductionService.SayHelloAsync();
+            var response = await ProductionService.SayHelloAsync();
+            Greetings = response.Message;
         }
         catch (Exception ex)
         {

@@ -1,4 +1,5 @@
 ﻿using GlobalAzure2022.Wasm.Modules.Production.Extensions.Abstracts;
+using GlobalAzure2022.Wasm.Modules.Production.Extensions.JsonResponses;
 using GlobalAzure2022.Wasm.Shared.Abstracts;
 using GlobalAzure2022.Wasm.Shared.Concretes;
 using GlobalAzure2022.Wasm.Shared.Configuration;
@@ -14,17 +15,20 @@ public class ProductionService : BaseHttpService, IProductionService
 
     }
 
-    public async Task<string> SayHelloAsync()
+    public async Task<ProductionGreetings> SayHelloAsync()
     {
         try
         {
-            return await HttpService.Get<string>(
-                $"{AppConfiguration.ProductionApiUri}/");
+            return await HttpService.Post<ProductionGreetings>(
+                $"{AppConfiguration.ProductionApiUri}/", "");
         }
         catch (Exception ex)
         {
             Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
-            return string.Empty;
+            return new ProductionGreetings
+            {
+                Message = ex.Message
+            };
         }
     }
 }

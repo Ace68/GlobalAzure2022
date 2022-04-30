@@ -1,5 +1,8 @@
-﻿using GlobalAzure2022.Modules.Production;
+﻿using FluentValidation;
+using GlobalAzure2022.Modules.Production;
 using GlobalAzure2022.Modules.Production.Abstracts;
+using GlobalAzure2022.Modules.Production.Extensions.JsonRequests;
+using GlobalAzure2022.Modules.Production.Extensions.JsonResponses;
 
 namespace GlobalAzure2022.Production.Modules;
 
@@ -17,20 +20,26 @@ public class ProductionModule : IModule
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapGet("/production/", HandleSayHelloAsync)
+        endpoints.MapPost("/production/", HandleSayHelloAsync)
             .WithName("SayHelloFromProduction")
             .WithTags("Production");
 
         return endpoints;
     }
 
-    private static async Task<IResult> HandleSayHelloAsync(IProductionService productionService)
+    private static async Task<IResult> HandleSayHelloAsync(GreetingsRequest request,
+        IProductionService productionService, IValidator<GreetingsRequest> validator)
     {
         try
         {
-            var greetings = await productionService.SayHelloAsync();
+            var validationResult = await validator.ValidateAsync(request);
 
-            return Results.Ok(greetings);
+            if (validationResult.IsValid)
+                return Results.Ok(await productionService.SayHelloAsync(request));
+
+            var errors = validationResult.Errors.GroupBy(e => e.PropertyName)
+                .ToDictionary(k => k.Key, v => v.Select(e => e.ErrorMessage).ToArray());
+            return Results.ValidationProblem(errors);
         }
         catch (Exception ex)
         {

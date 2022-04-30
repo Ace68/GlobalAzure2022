@@ -14,6 +14,11 @@
 
   <ItemGroup>
     <Folder Include="JsonResponses\" />
+    <Folder Include="JsonRequests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.0.0" />
   </ItemGroup>
 
 </Project>
