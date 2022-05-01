@@ -33,6 +33,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\GlobalAzure2022.Modules.Production\GlobalAzure2022.Modules.Production.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Production.ReadModel.MongoDb\GlobalAzure2022.Production.ReadModel.MongoDb.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Production.Shared\GlobalAzure2022.Production.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

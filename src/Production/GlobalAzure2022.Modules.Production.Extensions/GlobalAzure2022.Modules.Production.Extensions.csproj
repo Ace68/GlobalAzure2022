@@ -7,18 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CustomTypes\**" />
-    <EmbeddedResource Remove="CustomTypes\**" />
-    <None Remove="CustomTypes\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="JsonResponses\" />
     <Folder Include="JsonRequests\" />
+    <Folder Include="CustomTypes\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Muflone\Muflone.csproj" />
   </ItemGroup>
 
 </Project>

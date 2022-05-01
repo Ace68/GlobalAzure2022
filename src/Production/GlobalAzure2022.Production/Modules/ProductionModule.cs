@@ -23,6 +23,14 @@ public class ProductionModule : IModule
             .WithName("SayHelloFromProduction")
             .WithTags("Production");
 
+        endpoints.MapPost("/production/Beers", HandlePostBrewBeer)
+            .WithName("BrewBeer")
+            .WithTags("Production");
+
+        endpoints.MapGet("/production/Beers", HandleGetBeers)
+            .WithName("GetBeers")
+            .WithTags("Production");
+
         return endpoints;
     }
 
@@ -43,7 +51,39 @@ public class ProductionModule : IModule
         catch (Exception ex)
         {
             Console.WriteLine(ex);
-            throw;
+            return Results.BadRequest(ex.Message);
+        }
+    }
+
+    private static async Task<IResult> HandleGetBeers(IProductionService productionService)
+    {
+        try
+        {
+            var beers = await productionService.GetBeersAsync();
+            return Results.Ok(beers);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return Results.BadRequest(ex.Message);
+        }
+    }
+
+    private static async Task<IResult> HandlePostBrewBeer(BeersJson brewBeer, IProductionService productionService,
+        IValidator<BeersJson> validator)
+    {
+        try
+        {
+            var validationResult = await validator.ValidateAsync(brewBeer);
+
+            var errors = validationResult.Errors.GroupBy(e => e.PropertyName)
+                .ToDictionary(k => k.Key, v => v.Select(e => e.ErrorMessage).ToArray());
+            return Results.ValidationProblem(errors);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return Results.BadRequest(ex.Message);
         }
     }
 }

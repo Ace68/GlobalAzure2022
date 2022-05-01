@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,16 +9,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.15.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Extensions\GlobalAzure2022.Modules.Production.Extensions.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Production.ReadModel\GlobalAzure2022.Production.ReadModel.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Production.Shared\GlobalAzure2022.Production.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>
