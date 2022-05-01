@@ -7,14 +7,18 @@ using GlobalAzure2022.Production.ReadModel.Abstracts;
 using GlobalAzure2022.Production.ReadModel.Dtos;
 using GlobalAzure2022.Production.Shared.Services;
 using Microsoft.Extensions.Logging;
+using Muflone;
 
 namespace GlobalAzure2022.Modules.Production.Concretes;
 
 public class ProductionService : ProductionBaseService, IProductionService
 {
-    public ProductionService(IPersister persister, ILoggerFactory loggerFactory)
+    private readonly IServiceBus _serviceBus;
+
+    public ProductionService(IPersister persister, ILoggerFactory loggerFactory, IServiceBus serviceBus)
         : base(persister, loggerFactory)
     {
+        _serviceBus = serviceBus;
     }
 
     public Task<ProductionGreetings> SayHelloAsync(GreetingsRequest request)
@@ -31,7 +35,7 @@ public class ProductionService : ProductionBaseService, IProductionService
         {
             var brewBeer = new BrewBeer(new BeerId(Guid.NewGuid()), new BeerType(beerToBrew.BeerType),
                 new BeerQuantity(beerToBrew.Quantity));
-
+            await _serviceBus.SendAsync(brewBeer);
         }
         catch (Exception ex)
         {

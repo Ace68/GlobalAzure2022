@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Domain\GlobalAzure2022.Modules.Production.Domain.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Extensions\GlobalAzure2022.Modules.Production.Extensions.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Messages\GlobalAzure2022.Modules.Production.Messages.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Production.ReadModel\GlobalAzure2022.Production.ReadModel.csproj" />
