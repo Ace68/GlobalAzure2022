@@ -12,7 +12,7 @@ public class ProductionModule : IModule
 
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        builder.Services.AddProduction();
+        builder.Services.AddProduction(builder.Configuration["BrewUp:ServiceBus:ConnectionString"]);
 
         return builder.Services;
     }
