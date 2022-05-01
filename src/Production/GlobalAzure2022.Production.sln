@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Muflone", "Muflone", "{C630
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muflone", "Muflone\Muflone.csproj", "{2BEA2488-8A1D-41A0-ADDF-97B4CED931DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalAzure2022.Modules.Production.Messages", "GlobalAzure2022.Modules.Production.Messages\GlobalAzure2022.Modules.Production.Messages.csproj", "{F36D3398-A8BE-4C30-9A61-66AB0198B178}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{2BEA2488-8A1D-41A0-ADDF-97B4CED931DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BEA2488-8A1D-41A0-ADDF-97B4CED931DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BEA2488-8A1D-41A0-ADDF-97B4CED931DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F36D3398-A8BE-4C30-9A61-66AB0198B178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F36D3398-A8BE-4C30-9A61-66AB0198B178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F36D3398-A8BE-4C30-9A61-66AB0198B178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F36D3398-A8BE-4C30-9A61-66AB0198B178}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +108,7 @@ Global
 		{14F7701B-64B6-49B8-8C40-F7F47ED88DAD} = {0303A593-9C31-411E-BC2A-B9C9CF166CE4}
 		{C630CCDB-872D-4BC0-80FA-02ECDCA943A3} = {252EC546-7FE1-413B-9EF5-EB041284DD15}
 		{2BEA2488-8A1D-41A0-ADDF-97B4CED931DD} = {C630CCDB-872D-4BC0-80FA-02ECDCA943A3}
+		{F36D3398-A8BE-4C30-9A61-66AB0198B178} = {726E6B1A-EF89-40B1-A8C0-9CD287A2A7B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C7FB57C-6B37-45D5-9E11-DF98A44F0C97}

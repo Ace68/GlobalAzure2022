@@ -2,6 +2,7 @@
 using GlobalAzure2022.Modules.Production.Extensions.CustomTypes;
 using GlobalAzure2022.Modules.Production.Extensions.JsonRequests;
 using GlobalAzure2022.Modules.Production.Extensions.JsonResponses;
+using GlobalAzure2022.Modules.Production.Messages.Commands;
 using GlobalAzure2022.Production.ReadModel.Abstracts;
 using GlobalAzure2022.Production.ReadModel.Dtos;
 using GlobalAzure2022.Production.Shared.Services;
@@ -24,11 +25,31 @@ public class ProductionService : ProductionBaseService, IProductionService
         });
     }
 
+    public async Task PrepareBeerAsync(BeersJson beerToBrew)
+    {
+        try
+        {
+            var brewBeer = new BrewBeer(new BeerId(Guid.NewGuid()), new BeerType(beerToBrew.BeerType),
+                new BeerQuantity(beerToBrew.Quantity));
+
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            throw;
+        }
+    }
+
     public async Task BrewBeerAsync(BeerId beerId, BeerType beerType, BeerQuantity beerQuantity)
     {
         try
         {
-            throw new NotImplementedException();
+            var beer = await Persister.GetByIdAsync<Beers>(beerId.ToString());
+            if (beer != null && !string.IsNullOrWhiteSpace(beer.Id))
+                return;
+
+            beer = Beers.CreateBeers(beerId, beerType, beerQuantity);
+            await Persister.InsertAsync(beer);
         }
         catch (Exception ex)
         {

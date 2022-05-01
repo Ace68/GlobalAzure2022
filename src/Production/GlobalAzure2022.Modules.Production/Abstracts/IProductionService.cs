@@ -8,6 +8,7 @@ public interface IProductionService
 {
     Task<ProductionGreetings> SayHelloAsync(GreetingsRequest request);
 
+    Task PrepareBeerAsync(BeersJson beerToBrew);
     Task BrewBeerAsync(BeerId beerId, BeerType beerType, BeerQuantity beerQuantity);
 
     Task<IEnumerable<BeersJson>> GetBeersAsync();

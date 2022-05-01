@@ -75,6 +75,11 @@ public class ProductionModule : IModule
         try
         {
             var validationResult = await validator.ValidateAsync(brewBeer);
+            if (validationResult.IsValid)
+            {
+                await productionService.PrepareBeerAsync(brewBeer);
+                return Results.Accepted();
+            }
 
             var errors = validationResult.Errors.GroupBy(e => e.PropertyName)
                 .ToDictionary(k => k.Key, v => v.Select(e => e.ErrorMessage).ToArray());
