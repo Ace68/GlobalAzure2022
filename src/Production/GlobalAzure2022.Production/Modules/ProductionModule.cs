@@ -2,6 +2,8 @@
 using GlobalAzure2022.Modules.Production;
 using GlobalAzure2022.Modules.Production.Abstracts;
 using GlobalAzure2022.Modules.Production.Extensions.JsonRequests;
+using GlobalAzure2022.Production.Shared.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAzure2022.Production.Modules;
 
@@ -50,8 +52,8 @@ public class ProductionModule : IModule
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            return Results.BadRequest(ex.Message);
+            Console.WriteLine(CommonServices.GetDefaultErrorTrace(ex));
+            return Results.BadRequest(CommonServices.GetErrorMessage(ex));
         }
     }
 
@@ -64,8 +66,8 @@ public class ProductionModule : IModule
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            return Results.BadRequest(ex.Message);
+            Console.WriteLine(CommonServices.GetDefaultErrorTrace(ex));
+            return Results.BadRequest(CommonServices.GetErrorMessage(ex));
         }
     }
 
@@ -87,8 +89,8 @@ public class ProductionModule : IModule
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            return Results.BadRequest(ex.Message);
+            Console.WriteLine(CommonServices.GetDefaultErrorTrace(ex));
+            return Results.BadRequest(CommonServices.GetErrorMessage(ex));
         }
     }
 }

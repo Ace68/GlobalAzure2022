@@ -21,6 +21,8 @@ public static class ProductionHelper
     {
         services.AddScoped<IProductionService, ProductionService>();
 
+        services.AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ProductionService>());
+
         services.AddSingleton<IRepository, InMemoryRepository>();
         services.AddScoped<ICommandHandlerAsync<BrewBeer>, BrewBeerCommandHandler>();
         services.AddScoped<IDomainEventHandlerAsync<BeerBrewed>, BeerBrewedEventHandler>();
@@ -40,8 +42,6 @@ public static class ProductionHelper
                 new ServiceBusEventProcessorFactory<BeerBrewed>(brokerOptions, domainEventHandlerFactory);
             return domainEventConsumerFactory.DomainEventProcessorAsync;
         });
-
-        services.AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ProductionService>());
 
         return services;
     }

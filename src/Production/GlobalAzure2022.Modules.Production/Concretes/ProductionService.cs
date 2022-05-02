@@ -33,9 +33,12 @@ public class ProductionService : ProductionBaseService, IProductionService
     {
         try
         {
-            var brewBeer = new BrewBeer(new BeerId(Guid.NewGuid()), new BeerType(beerToBrew.BeerType),
+            //var brewBeer = new BrewBeer(new BeerId(Guid.NewGuid()), new BeerType(beerToBrew.BeerType),
+            //    new BeerQuantity(beerToBrew.Quantity));
+            //await _serviceBus.SendAsync(brewBeer);
+
+            await BrewBeerAsync(new BeerId(Guid.NewGuid()), new BeerType(beerToBrew.BeerType),
                 new BeerQuantity(beerToBrew.Quantity));
-            await _serviceBus.SendAsync(brewBeer);
         }
         catch (Exception ex)
         {
