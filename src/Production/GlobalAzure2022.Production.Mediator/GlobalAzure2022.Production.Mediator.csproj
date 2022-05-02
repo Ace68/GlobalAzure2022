@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,10 +9,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Domain\GlobalAzure2022.Modules.Production.Domain.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Messages\GlobalAzure2022.Modules.Production.Messages.csproj" />
+    <ProjectReference Include="..\GlobalAzure2022.Production.Shared\GlobalAzure2022.Production.Shared.csproj" />
     <ProjectReference Include="..\Muflone.Azure\Muflone.Azure.csproj" />
     <ProjectReference Include="..\Muflone\Muflone.csproj" />
   </ItemGroup>

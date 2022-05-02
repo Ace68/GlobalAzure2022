@@ -6,7 +6,7 @@ namespace GlobalAzure2022.Production.Modules;
 public class MongoDbModule : IModule
 {
     public bool IsEnabled { get; } = true;
-    public int Order { get; } = 0;
+    public int Order { get; } = 1;
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
         var mongoDbParameters = new MongoDbParameters();

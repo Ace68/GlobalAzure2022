@@ -13,7 +13,7 @@ namespace GlobalAzure2022.Modules.Production.Factories
             _serviceProvider = serviceProvider;
         }
 
-        public IDomainEventProcessorAsync<T> CreatedomainEventEventProcessorAsync<T>() where T : class, IDomainEvent
+        public IDomainEventProcessorAsync<T> CreateDomainEventEventProcessorAsync<T>() where T : class, IDomainEvent
         {
             return _serviceProvider.GetService<IDomainEventProcessorAsync<T>>();
         }

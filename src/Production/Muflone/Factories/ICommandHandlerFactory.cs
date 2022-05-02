@@ -1,6 +1,6 @@
 ﻿using Muflone.Messages.Commands;
 
-namespace Muflone.Azure.Factories;
+namespace Muflone.Factories;
 
 public interface ICommandHandlerFactory
 {

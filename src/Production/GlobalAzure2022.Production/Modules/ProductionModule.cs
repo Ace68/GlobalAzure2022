@@ -3,18 +3,17 @@ using GlobalAzure2022.Modules.Production;
 using GlobalAzure2022.Modules.Production.Abstracts;
 using GlobalAzure2022.Modules.Production.Extensions.JsonRequests;
 using GlobalAzure2022.Production.Shared.Services;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalAzure2022.Production.Modules;
 
 public class ProductionModule : IModule
 {
     public bool IsEnabled { get; } = true;
-    public int Order { get; } = 0;
+    public int Order { get; } = 2;
 
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        builder.Services.AddProduction(builder.Configuration["BrewUp:ServiceBus:ConnectionString"]);
+        builder.Services.AddProduction();
 
         return builder.Services;
     }
