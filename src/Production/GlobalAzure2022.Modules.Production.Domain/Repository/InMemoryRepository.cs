@@ -1,5 +1,4 @@
-﻿using GlobalAzure2022.Production.Shared.Abstracts;
-using Muflone;
+﻿using Muflone;
 using Muflone.Messages.Events;
 using Muflone.Persistence;
 
@@ -7,13 +6,6 @@ namespace GlobalAzure2022.Modules.Production.Domain.Repository;
 
 public class InMemoryRepository : IRepository
 {
-    private readonly IPublish _publish;
-
-    public InMemoryRepository(IPublish publish)
-    {
-        _publish = publish;
-    }
-
     public IEnumerable<DomainEvent> Events { get; private set; } = Enumerable.Empty<DomainEvent>();
 
     public async Task<TAggregate> GetByIdAsync<TAggregate>(Guid id) where TAggregate : class, IAggregate
@@ -32,11 +24,6 @@ public class InMemoryRepository : IRepository
     public async Task SaveAsync(IAggregate aggregate, Guid commitId, Action<IDictionary<string, object>> updateHeaders)
     {
         Events = aggregate.GetUncommittedEvents().Cast<DomainEvent>();
-
-        foreach (var @event in Events)
-        {
-            await _publish.PublishAsync(@event);
-        }
 
         //return Task.CompletedTask;
     }

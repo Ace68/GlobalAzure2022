@@ -2,9 +2,10 @@
 using GlobalAzure2022.Modules.Production.Extensions.CustomTypes;
 using GlobalAzure2022.Modules.Production.Extensions.JsonRequests;
 using GlobalAzure2022.Modules.Production.Extensions.JsonResponses;
-using GlobalAzure2022.Modules.Production.Messages.Commands;
+using GlobalAzure2022.Modules.Production.Messages.Events;
 using GlobalAzure2022.Production.ReadModel.Abstracts;
 using GlobalAzure2022.Production.ReadModel.Dtos;
+using GlobalAzure2022.Production.Shared.Abstracts;
 using GlobalAzure2022.Production.Shared.Services;
 using Microsoft.Extensions.Logging;
 using Muflone;
@@ -14,11 +15,14 @@ namespace GlobalAzure2022.Modules.Production.Concretes;
 public class ProductionService : ProductionBaseService, IProductionService
 {
     private readonly IServiceBus _serviceBus;
+    private readonly IPublish _publish;
 
-    public ProductionService(IPersister persister, ILoggerFactory loggerFactory, IServiceBus serviceBus)
+    public ProductionService(IPersister persister, ILoggerFactory loggerFactory,
+        IServiceBus serviceBus, IPublish publish)
         : base(persister, loggerFactory)
     {
         _serviceBus = serviceBus;
+        _publish = publish;
     }
 
     public Task<ProductionGreetings> SayHelloAsync(GreetingsRequest request)
@@ -33,9 +37,13 @@ public class ProductionService : ProductionBaseService, IProductionService
     {
         try
         {
-            var brewBeer = new BrewBeer(new BeerId(Guid.NewGuid()), new BeerType(beerToBrew.BeerType),
+            //var brewBeer = new BrewBeer(new BeerId(Guid.NewGuid()), new BeerType(beerToBrew.BeerType),
+            //    new BeerQuantity(beerToBrew.Quantity));
+            //await _serviceBus.SendAsync(brewBeer);
+
+            var beerBrewed = new BeerBrewed(new BeerId(Guid.NewGuid()), new BeerType(beerToBrew.BeerType),
                 new BeerQuantity(beerToBrew.Quantity));
-            await _serviceBus.SendAsync(brewBeer);
+            await _publish.PublishAsync(beerBrewed);
         }
         catch (Exception ex)
         {
