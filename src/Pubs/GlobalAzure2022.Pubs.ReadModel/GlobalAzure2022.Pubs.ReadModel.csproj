@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Extensions\GlobalAzure2022.Modules.Production.Extensions.csproj" />
+    <ProjectReference Include="..\GlobalAzure2022.Modules.Pubs.Extensions\GlobalAzure2022.Modules.Pubs.Extensions.csproj" />
+  </ItemGroup>
+
+</Project>
