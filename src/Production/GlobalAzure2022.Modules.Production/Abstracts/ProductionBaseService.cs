@@ -5,8 +5,8 @@ namespace GlobalAzure2022.Modules.Production.Abstracts;
 
 public abstract class ProductionBaseService
 {
-    protected IPersister Persister;
-    protected ILogger Logger;
+    protected readonly IPersister Persister;
+    protected readonly ILogger Logger;
 
     protected ProductionBaseService(IPersister persister, ILoggerFactory loggerFactory)
     {

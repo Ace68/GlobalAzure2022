@@ -11,4 +11,11 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\GlobalAzure2022.Modules.Pubs.Messages\GlobalAzure2022.Modules.Pubs.Messages.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Pubs.ReadModel\GlobalAzure2022.Pubs.ReadModel.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Pubs.Shared\GlobalAzure2022.Pubs.Shared.csproj" />
+	  <ProjectReference Include="..\Muflone\Muflone.csproj" />
+	</ItemGroup>
+
 </Project>

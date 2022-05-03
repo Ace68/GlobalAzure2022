@@ -32,6 +32,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\GlobalAzure2022.Modules.Pubs\GlobalAzure2022.Modules.Pubs.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Pubs.Mediator\GlobalAzure2022.Pubs.Mediator.csproj" />
+	  <ProjectReference Include="..\GlobalAzure2022.Pubs.ReadModel.MongoDb\GlobalAzure2022.Pubs.ReadModel.MongoDb.csproj" />
 	</ItemGroup>
 
 </Project>

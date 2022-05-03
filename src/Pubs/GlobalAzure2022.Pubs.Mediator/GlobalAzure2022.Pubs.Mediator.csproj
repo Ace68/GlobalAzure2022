@@ -8,14 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.15.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GlobalAzure2022.Pubs.ReadModel\GlobalAzure2022.Pubs.ReadModel.csproj" />
+    <ProjectReference Include="..\GlobalAzure2022.Modules.Pubs.Messages\GlobalAzure2022.Modules.Pubs.Messages.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Pubs.Shared\GlobalAzure2022.Pubs.Shared.csproj" />
+    <ProjectReference Include="..\Muflone.Azure\Muflone.Azure.csproj" />
+    <ProjectReference Include="..\Muflone\Muflone.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
 ﻿using System.Linq.Expressions;
-using GlobalAzure2022.Production.ReadModel.Abstracts;
-using GlobalAzure2022.Production.Shared.Services;
+using GlobalAzure2022.Pubs.ReadModel.Abstracts;
+using GlobalAzure2022.Pubs.Shared.Services;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace GlobalAzure2022.Production.ReadModel.MongoDb.Repository
+namespace GlobalAzure2022.Pubs.ReadModel.MongoDb.Repository
 {
     public sealed class Persister : IPersister
     {
