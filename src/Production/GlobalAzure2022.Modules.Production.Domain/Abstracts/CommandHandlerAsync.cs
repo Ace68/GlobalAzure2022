@@ -2,7 +2,7 @@
 using Muflone.Messages.Commands;
 using Muflone.Persistence;
 
-namespace GlobalAzure2022.Modules.Production.Domain.CommandsHandler;
+namespace GlobalAzure2022.Modules.Production.Domain.Abstracts;
 
 public abstract class CommandHandlerAsync<TCommand> : ICommandHandlerAsync<TCommand> where TCommand : class, ICommand
 {

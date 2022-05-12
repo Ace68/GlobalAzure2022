@@ -9,13 +9,15 @@
   <ItemGroup>
     <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Messages\GlobalAzure2022.Modules.Production.Messages.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Production.Shared\GlobalAzure2022.Production.Shared.csproj" />
-    <ProjectReference Include="..\Muflone\Muflone.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstracts\" />
     <Folder Include="CommandsHandler\" />
     <Folder Include="Entities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Muflone" Version="6.0.2" />
   </ItemGroup>
 
 </Project>

@@ -17,7 +17,6 @@
     <ProjectReference Include="..\GlobalAzure2022.Modules.Production.Messages\GlobalAzure2022.Modules.Production.Messages.csproj" />
     <ProjectReference Include="..\GlobalAzure2022.Production.Shared\GlobalAzure2022.Production.Shared.csproj" />
     <ProjectReference Include="..\Muflone.Azure\Muflone.Azure.csproj" />
-    <ProjectReference Include="..\Muflone\Muflone.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using GlobalAzure2022.Modules.Production.Domain.Entities;
+﻿using GlobalAzure2022.Modules.Production.Domain.Abstracts;
+using GlobalAzure2022.Modules.Production.Domain.Entities;
 using GlobalAzure2022.Modules.Production.Messages.Commands;
 using GlobalAzure2022.Production.Shared.Services;
 using Microsoft.Extensions.Logging;
